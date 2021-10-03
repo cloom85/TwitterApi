@@ -28,7 +28,7 @@ namespace TwitterApi
             services.AddSingleton<ITweetService, TweetService>();
             services.AddSingleton<ITwitterService, TwitterService>();
             services.AddSingleton<IWorker, Worker>();
-            services.AddTransient<IDateTime, DateTimeService>();
+            services.AddSingleton<IDateTime, DateTimeService>();
 
             services.AddControllers();
         }
@@ -41,7 +41,7 @@ namespace TwitterApi
                 app.UseDeveloperExceptionPage();
             }
 
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
             app.UseRouting();
 

@@ -17,5 +17,11 @@ namespace TwitterApi.Core.Services
         public int GetCreationCount() => creationCount;
         public DateTime GetCreationDate() => creationDate;
         public void TweetRecieved() => creationCount++;
+
+        public double GetAverageTweetPerMinute()
+        {
+            TimeSpan ts = mDateTime.Now() - GetCreationDate();
+            return (GetCreationCount() / ts.TotalMinutes);
+        }
     }
 }

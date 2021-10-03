@@ -11,12 +11,14 @@ namespace TwitterApi.Test.Unit
         [TestMethod]
         public void TestCount()
         {
+
             var dateTime = Substitute.For<IDateTime>();
             dateTime.Now().ReturnsForAnyArgs(new DateTime(2001, 1, 1));
             var service = new TweetService(dateTime);
-            service.TweetRecieved();
             var count = service.GetCreationCount();
-            Assert.AreEqual(1, count);
+            service.TweetRecieved();
+            var newCount = service.GetCreationCount();
+            Assert.AreEqual(newCount, (count+1));
         }
 
         [TestMethod]
@@ -27,6 +29,23 @@ namespace TwitterApi.Test.Unit
             var service = new TweetService(dateTime);
             var date = service.GetCreationDate();
             Assert.AreEqual(new DateTime(2001, 1, 1), date);
+        }
+
+        [TestMethod]
+        public void TestAverage()
+        {
+            var dateTime = Substitute.For<IDateTime>();
+            dateTime.Now().ReturnsForAnyArgs(new DateTime(2001, 1, 1));
+            var service = new TweetService(dateTime);
+            var startDate = service.GetCreationDate();
+            var currentDate = startDate.AddMinutes(5);
+            dateTime.Now().ReturnsForAnyArgs(currentDate);
+            for (int i=0; i<25; i++)
+            {
+            service.TweetRecieved();
+            }
+            var count = service.GetAverageTweetPerMinute();
+            Assert.AreEqual(count,5);
         }
     }
 }

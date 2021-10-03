@@ -1,9 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TwitterApi.Core.Services;
 
 namespace TwitterApi.Controllers
@@ -12,27 +7,23 @@ namespace TwitterApi.Controllers
     [Route("[controller]/[action]")]
     public class TwitterController : ControllerBase
     {
+        private readonly ITweetService tweetService;
 
-        private readonly ILogger<TwitterController> _logger;
-        private readonly ITweetService mysingleton;
-
-        public TwitterController(ILogger<TwitterController> logger, ITweetService singleton)
+        public TwitterController(ITweetService tweet)
         {
-            _logger = logger;
-            mysingleton = singleton;
+            tweetService = tweet;
         }
 
         [HttpGet]
         public int GetTweetTotal()
         {
-            return mysingleton.GetCreationCount();
+            return tweetService.GetCreationCount();
         }
 
         [HttpGet]
-        public double GetTweetAverage()
+        public double GetTweetAveragePerMinute()
         {
-            TimeSpan ts = DateTime.Now - mysingleton.GetCreationDate();
-            return (mysingleton.GetCreationCount() / ts.TotalMinutes);
+            return tweetService.GetAverageTweetPerMinute();
         }
     }
 }

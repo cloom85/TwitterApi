@@ -1,8 +1,6 @@
-﻿using System;
-using Tweetinvi;
+﻿using Tweetinvi;
 using Tweetinvi.Models;
 using TwitterApi.Core;
-using TwitterApi.Entities;
 
 namespace TwitterApi.Infrastructure.Services
 {
