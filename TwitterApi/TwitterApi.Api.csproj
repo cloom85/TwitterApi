@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TweetinviAPI" Version="5.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TwitterApi.Core\TwitterApi.Core.csproj" />
+    <ProjectReference Include="..\TwitterApi.Entities\TwitterApi.Entities.csproj" />
+    <ProjectReference Include="..\TwitterApi.Infrastructure\TwitterApi.Infrastructure.csproj" />
+  </ItemGroup>
+
+
+</Project>
