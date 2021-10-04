@@ -6,5 +6,6 @@ namespace TwitterApi.Infrastructure.Services
     {
         ISampleStreamV2 StartTwitterSampleStream();
         void StartTwitterStream(ref ISampleStreamV2 twitterStream);
+
     }
 }

@@ -11,9 +11,7 @@ namespace TwitterApi.Test.Unit
         {
             var settings = GetSettings();
             var service = new TwitterService(settings);
-
             var stream = service.StartTwitterSampleStream();
-            
             Assert.IsNotNull(stream);
         }
 
@@ -23,5 +21,6 @@ namespace TwitterApi.Test.Unit
             ConsumerSecret = "",
             BearerToken = ""
         };
+
     }
 }

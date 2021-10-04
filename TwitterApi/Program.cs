@@ -18,5 +18,6 @@ namespace TwitterApi
                     webBuilder.UseStartup<Startup>();
                 }).ConfigureServices(services =>
                     services.AddHostedService<StartupService>());
+
     }
 }

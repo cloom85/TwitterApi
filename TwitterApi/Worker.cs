@@ -20,21 +20,32 @@ namespace TwitterApi
             twitterService = twitter;
             tweetService = tweet;
         }
+
         public async Task StartStream(CancellationToken cancellationToken)
         {
             try
             {
                 var stream = twitterService.StartTwitterSampleStream();
-
-                stream.TweetReceived += (sender, eventArgs) =>
+                stream.TweetReceived += (sender, arge) =>
                 {
+                    if (!(arge.Tweet == null))
+                    {
                     tweetService.TweetRecieved();
+                    }
+                };
+                stream.EventReceived += (sender, EventArgs) =>
+                {
+                    if (EventArgs.Json.Contains("Unauthorized"))
+                    {
+                        stream.StopStream();
+                        logger.LogInformation("Login Failure:  Please stop application and check credentials.");
+                    }
                 };
 
                 while (!cancellationToken.IsCancellationRequested)
                 {
                     var count = tweetService.GetCreationCount();
-                    logger.LogInformation($"Count is: {count}");
+                    logger.LogInformation($"Stream is running current count is: {count}");
                     if (count == previousCount && previousCount != 0)
                     {
                         logger.LogInformation($"Stream is stopped - restarting");

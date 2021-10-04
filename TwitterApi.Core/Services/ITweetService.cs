@@ -8,5 +8,6 @@ namespace TwitterApi.Core.Services
         DateTime GetCreationDate();
         void TweetRecieved();
         double GetAverageTweetPerMinute();
+
     }
 }

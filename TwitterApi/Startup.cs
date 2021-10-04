@@ -29,7 +29,6 @@ namespace TwitterApi
             services.AddSingleton<ITwitterService, TwitterService>();
             services.AddSingleton<IWorker, Worker>();
             services.AddSingleton<IDateTime, DateTimeService>();
-
             services.AddControllers();
         }
 
@@ -52,5 +51,6 @@ namespace TwitterApi
                 endpoints.MapControllers();
             });
         }
+
     }
 }

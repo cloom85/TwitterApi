@@ -7,4 +7,5 @@ namespace TwitterApi
     {
         Task StartStream(CancellationToken cancellationToken);
     }
+
 }

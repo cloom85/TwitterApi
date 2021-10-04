@@ -9,6 +9,7 @@ namespace TwitterApi
     {
         private readonly ILogger<StartupService> logger;
         private readonly IWorker worker;
+
         public StartupService(ILogger<StartupService> logger, IWorker worker)
         {
             this.logger = logger;
@@ -26,5 +27,6 @@ namespace TwitterApi
             logger.LogInformation("Task is stopping");
             return Task.CompletedTask;
         }
+
     }
 }

@@ -25,5 +25,6 @@ namespace TwitterApi.Controllers
         {
             return tweetService.GetAverageTweetPerMinute();
         }
+
     }
 }

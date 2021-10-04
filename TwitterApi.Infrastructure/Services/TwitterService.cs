@@ -1,18 +1,19 @@
 ﻿using Tweetinvi;
 using Tweetinvi.Models;
 using TwitterApi.Core;
+using Tweetinvi.Streaming.V2;
 
 namespace TwitterApi.Infrastructure.Services
 {
     public class TwitterService : ITwitterService
     {
-
         private Settings mSettings { get; }
         public TwitterService(Settings settings)
         {
             mSettings = settings;
         }
-        public Tweetinvi.Streaming.V2.ISampleStreamV2 StartTwitterSampleStream()
+
+        public ISampleStreamV2 StartTwitterSampleStream()
         {
             var appCredentials = new ConsumerOnlyCredentials(mSettings.ConsumerKey, mSettings.ConsumerKey)
             {
@@ -25,7 +26,7 @@ namespace TwitterApi.Infrastructure.Services
             return twitterStream;
         }
 
-        public void StartTwitterStream(ref Tweetinvi.Streaming.V2.ISampleStreamV2 twitterStream)
+        public void StartTwitterStream(ref ISampleStreamV2 twitterStream)
         {
             twitterStream.StartAsync();
         }

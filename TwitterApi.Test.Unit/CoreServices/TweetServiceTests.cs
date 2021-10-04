@@ -11,7 +11,6 @@ namespace TwitterApi.Test.Unit
         [TestMethod]
         public void TestCount()
         {
-
             var dateTime = Substitute.For<IDateTime>();
             dateTime.Now().ReturnsForAnyArgs(new DateTime(2001, 1, 1));
             var service = new TweetService(dateTime);
@@ -47,5 +46,6 @@ namespace TwitterApi.Test.Unit
             var count = service.GetAverageTweetPerMinute();
             Assert.AreEqual(count,5);
         }
+
     }
 }
